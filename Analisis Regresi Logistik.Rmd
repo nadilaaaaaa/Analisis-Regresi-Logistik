@@ -1,0 +1,221 @@
+---
+title: "Analisis Regresi Logistik Pengaruh Usia Ibu Hamil dan Jarak Kehamilan Terhadap Status Anemia"
+author: "Nadila"
+date: "1 Juni 2023"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+    toc: true
+    number_sections: true
+---
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE)
+opts_chunk$set(warning = FALSE)
+opts_chunk$set(comment = "")
+opts_chunk$set(collapse = TRUE)
+opts_chunk$set(error = TRUE)
+opts_chunk$set(prompt = TRUE)
+opts_chunk$set(fig.align = 'center')
+```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Library:
+
+```{r}
+# install.packages("knitr")
+# install.packages("rmarkdown")
+# install.packages("prettydoc")
+# install.packages("equatiomatic")
+```
+
+
+
+# PENDAHULUAN
+
+## Latar Belakang  
+Data memiliki kaitan yang sangat erat dalam kehidupan. Data terdiri dari data numerik maupun kategorik. Namun, data tersebut perlu diolah terlebih dahulu agar data menghasilkan sebuah informasi yang mudah dipahami sehingga data dapat menjadi sebuah solusi permasalahan yang kemudian dapat ditarik kesimpulan. Oleh karena itu, statistika dibutuhkan dalam melakukan analisis data tersebut. Gasperz (1989:20), “statistika adalah lmu pengetahuan yang berhubungan dengan cara-cara pengumpulan data, pengolahan, serta penganalisisannya, penarikan kesimpulan serta pembuatan keputusan yang cukup beralasan berdasarkan fakta yang ada”. Statistika terbagi menjadi dua, yaitu statistika deskriptif dan statistika inferensial. Statistika deskriptif adalah metode yang digunakan untuk menggambarkan data secara objektif dan ringkas.Statistika deksriptif menggunakan tabel, diagram, grafik, dan lainnya dalam memvisualkan data. Sementara, statistika inferensial adalah metode yang digunakan untuk menarik sebuah kesimpulan dari suatu dugaan yang mana didapat dari statistika deskriptif. Statistika inferensial memiliki kaitan erat dengan estimasi parameter serta pengujian hipotesis. Selain itu, statistika inferensial juga berkaitan erat dengan masalah pengujian statistik, hipotesis, analisis ragam, serta analisis regresi maupun korelasi.
+
+# TINJAUAN PUSTAKA
+## Statistika deskriptif
+Statistika deskriptif adalah metode yang berkaitan dengan pengumpulan, penyajian, dan interpretasi data secara singkat dan jelas. Statistika deskriptif menggambarkan data secara ringkas dan objektif melalui penyusunan tabel, diagram, grafik, dan lainnya. Metode ini penting dalam memahami karakteristik data serta memberi gambaran awal sebelum menganalisis data. Berikut merupakan ukuran umum yang biasanya digunakan dalam statistika deskriptif, yaitu ukuran pusat yang menggambarkan posisi tengah data (mean, median, dan modus), ukuran penyebaran yang menggambarkan sejauh mana data tersebar (jangkauan, ragam, dan simpangan baku), ukuran Kemencengan yang menggambarkan tingkat asimetri distribusi data (positif menunjukkan ekor distribusi yang lebih panjang di sebelah kanan, sedangkan negatif menunjukkan ekor distribusi yang lebih panjang di sebelah kiri), dan ukuran kurtosis yang menggambarkan tingkat kecuraman distribusi data (tinggi menunjukkan puncak yang lebih tajam atau ekor yang lebih tebal, sedangkan rendah menunjukkan puncak yang lebih datar atau ekor yang lebih tipis).
+
+## Regresi logistik
+Analisis regresi logistik adalah salah satu metode statistika yang digunakan untuk memodelkan hubungan antara variabel independen (prediktor) dan variabel dependen (respon). Dalam regresi logistik, dilakukan prediksi terhadap variabel dependen yang berskala nominal dengan dua kategori, yaitu "ya" atau "tidak", "sukses" atau "gagal", "baik" atau "buruk". Menurut Yumira, dkk (2017) regresi  logistik  biner,  regresi  logistik  ordinal,  dan  regresi  logistik  multinomial merupakan bagian dari regresi logistik. Pada dasarnya, regresi logistik bertujuan memodelkan hubungan antara variabel prediktor dan variabel dependen kategorikal, sehingga memungkinkan untuk melakukan prediksi atau penjelasan mengenai variabel dependen berdasarkan nilai-nilai variabel prediktor yang diberikan. 
+Model dari regresi logistik adalah sebagai berikut:
+
+$$
+g(x)=ln(\frac{\pi(x)}{1-\pi(x)})=\beta{0}+\beta1X1+\beta{2}X2+...+\beta{n}Xn
+$$
+atau
+$$
+\pi(x)=(\frac{exp(\beta{0}+\beta{1}x1+...+\beta{p}xp)}{1+exp(\beta{0}+\beta{1}x1+...+\beta{p}xp)}
+$$
+
+## Uji Kesesuaian Model
+
+Uji kecocokan model adalah uji yang digunakan untuk mengetahui apakah model cocok dengan data pengamatan atau tidak. Uji ini dilakukan menggunakan uji Hosme-Lemeshow. Dalam pengambilan keputusan, tolak H0 ketika Chi-square > Chi-square tabel atau p-value < alpha sehingga disimpulkan bahwa model regresi logistik tidak cocok dengan data observasional. Sebaliknya, terima HO ketika Chi-square < Chi-square tabel atau p-value > alpha sehingga disimpulkan bahwa model regresi logistik dianggap cocok dengan data observasional.
+
+
+##  Uji Nagelkerke's R Square
+
+Uji negelkerke r square adalah uji yang digunakan dalam analisis regresi logistik untuk mengukur seberapa baik variabel independen dalam menjelaskan variabel dependen yang digunakan. Nilai Nagelkerke R-squared berkisar antara 0 dan 1. Semakin tinggi nilai Nagelkerke R-squared, semakin baik model dalam menjelaskan variasi dalam data. Menurut Nurlia(2008), ukuran Nagelkerke'S R Square bisa  ditafsirkan  misalnya ukuran/nilai R Square pada multiple regression. Menurut Nurlia(2008), nilai/ukuran  koefisien Nagelkerke'S R Square biasanya  lebih  besar  daripada ukuran/nilai koefisien cox dan snell’s R  Square namun cenderung  lebih  kecil daripada  ukuran  koefisien determinasi R Square pada regresi linear berganda.
+
+
+## Uji Signifikansi Keseluruhan Model
+
+Uji signifikansi keseluruhan model adalah uji yang memberikan informasi mengenai model secara keseluruhan apakah memberikan kontribusi yang signifikan dalam menjelaskan variabel dependen atau tidak. Untuk menguji signifikansi keseluruhan model regresi, umumnya digunakan uji statistik seperti uji chi-square (χ²) atau uji likelihood ratio (LR). 
+$$
+G= -2ln(\frac{likelihood(Model B)}{likelihood(Model A)})
+$$
+
+# SOURCE CODE
+## Library 
+```{r}
+
+```
+
+
+```{r}
+# Library
+library(openxlsx)
+library(pscl)
+library(performance)
+library(car)
+library(rcompanion)
+```
+
+## Data
+Pada analisis ini, data yang digunakan adalah data sekunder yang bersumber dari skripsi Apriliyani Varamita dengan judul "ANALISIS REGRESI LOGISTIK DAN APLIKASINYA PADA PENYAKIT ANEMIA UNTUK IBU HAMIL DI RSKD IBU DAN ANAK SITI FATIMAH MAKASSAR".
+```{r}
+data_penyakit_anemia <- read.xlsx("Downloads/data penyakit anemia.xlsx")
+data_penyakit_anemia
+```
+Y = Status anemia 
+
+(Y= 1, jika hemoglobin < 10,5 g/dbl yang berarti pasien terkena anemia)
+
+(Y= 2, jika hemoglobin > 10,5 g/dbl yang berarti pasien tidak terkena anemia)
+
+X1 = Usia ibu (tahun)
+
+X2= Jarak kehamilan (tahun)
+
+## Statistika Deskriptif
+```{r}
+summary(data_penyakit_anemia)
+```
+```{r}
+hist(data_penyakit_anemia$`Status.anemia`, main = "Histogram Hemoglobin Pada Ibu Hamil", xlab = "Hb (g/dbl)", ylab = "frequency",col = "blue")
+```
+
+
+## Regresi Logistik
+```{r}
+data_anemia <- read.xlsx("Downloads/data anemia.xlsx")
+data_anemia
+X1 <- data_anemia$Usia.ibu
+X2 <- data_anemia$Jarak.kehamilan
+Y <- as.factor (data_anemia$Status.anemia)
+datafr <- data.frame(X1,X2,Y)
+str(datafr) 
+reglog <- glm(Y~X1+X2, data = datafr, family = binomial)
+summary(reglog)
+```
+
+
+## Uji Kesesuaian Model
+```{r}
+performance_hosmer(reglog, n_bins = 10)
+```
+
+
+## Uji Nagelkerke's R Square
+```{r}
+nagelkerke(reglog)
+```
+
+## Uji Signifikansi Keseluruhan Model
+```{r}
+pR2 (reglog)
+qchisq(0.95,0)
+```
+
+
+# HASIL DAN PEMBAHASAN
+
+## Statistika Deskriptif
+```{r}
+summary(data_penyakit_anemia)
+```
+```{r}
+hist(data_penyakit_anemia$`Status.anemia`, main = "Histogram Hemoglobin Pada Ibu Hamil", xlab = "Hb (g/dbl)", ylab = "frequency",col = "blue")
+
+```
+Berdasarkan hasil analisis, diperoleh rata-rata hemoglobin pada kasus anemia pada ibu hamil sebesar 9,563g/dbl. Apabila hemoglobin < 10,5 g/dbl berarti pasien terkena anemia sehingga terdapat banyak ibu hamil yang menderita anemia. Rata-rata usia pasien yang digunakan pada sampel, yaitu 26.65. Untuk rata-rata jarak kehamilan pada ibu hamil, yaitu 2.174. Kemudian, informasi mengenai tingkat hemoglobin pada ibu hamil dapat dilihat pada histogram.
+
+## Regresi Logistik
+Berikut merupakan hasil analisis regresi logistik menggunakan tabel dengan Y bernilai 1 jika hemoglobin pada pasien < 10,5 yang berarti terkena anemia dan bernilai 2 jika hemoglobin pada pasien > 10,5 yang berarti pasien tidak terkena anemia. 
+```{r}
+data_anemia <- read.xlsx("Downloads/data anemia.xlsx")
+data_anemia
+X1 <- data_anemia$Usia.ibu
+X2 <- data_anemia$Jarak.kehamilan
+Y <- as.factor (data_anemia$Status.anemia)
+datafr <- data.frame(X1,X2,Y)
+str(datafr) 
+reglog <- glm(Y~X1+X2, data = datafr, family = binomial)
+summary(reglog)
+```
+
+Berdasarkan hasil analisis regresi logistik diperoleh model regresi logistik
+$$
+\beta{0}=0.10512, X1= -0.06608 , X2= -0.07247
+$$
+$$
+g(x)= 0.10512-0.06608X1-0.07247X2
+$$
+
+Apabila usia ibu (X1) dan jarak kehamilan (X2) konstan, maka status  anemia pada ibu hamil sebesar 0.10512. Kemudian, dengan asumsi jarak kehamilan konstan, maka setiap peningkatan usia ibu sebesar 1 tahun akan menurunkan status anemia pada ibu hamil sebesar 0.06608. Dengan asumsi usia ibu konstan, maka setiap peningkatan jarak kehamilan sebesar 1 tahun akan menurunkan status anemia pada ibu hamil sebesar 0.07247.
+
+
+## Uji Kesesuaian Model
+```{r}
+performance_hosmer(reglog, n_bins = 10)
+```
+Berdasarkan hasil analisis, diperoleh nilai-p sebesar 0.380 yang berarti nilai-p (0.380) > alpha (0.05). Dapat disimpulkan terima H0, sehingga model sudah sesuai dengan data pengamatan.
+
+
+## Uji Nagelkerke's R Square
+```{r}
+nagelkerke(reglog)
+```
+Berdasarkan hasil analisis, diperoleh nilai nagelkerke r-square sebesar 0.0511824. Hal ini menunjukkan bahwa variabel independen dapat menjelaskan variabel dependen sebesar 0.0511824 atau 5.11824%. Sisanya variabel dependen dijelaskan oleh faktor lain.
+
+## Uji Signifikansi Keseluruhan Model
+```{r}
+pR2 (reglog)
+qchisq(0.95,0)
+``` 
+Berdasarkan hasil analisis diperoleh nilai G2 sebesar 1.37126224 dengan nilai chi-square sebesar 0 (df=g-2=0). Sehingga tolak H0, karena G2 (1.37126224) > nilai chi-square (0). Jadi, dapat disimpulkan bahwa model signifikan atau minimal terdapat satu variabel yang berpengaruh terhadap status anemia pada ibu hamil.
+
+
+# KESIMPULAN
+Berdasarkan hasil analisis statistika deskriptif, diperoleh rata-rata hemoglobin pada kasus anemia pada ibu hamil sebesar 9,563g/dbl yang berarti hemoglobin < 10,5 g/dbl sehingga terdapat banyak ibu hamil yang menderita anemia. Berdasarkan hasil analisis regresi logistik, dapat disimpulkan bahwa model sudah sesuai dan signifikan. Pada analisis regresi logistik diperoleh model regresi, yaitu𝑔(𝑥)=0.10512−0.06608𝑋1−0.07247𝑋2.
+
+# DAFTAR PUSTAKA
+Varamita, A. (2017). Analisis Regresi Logistik Dan Aplikasinya Pada Penyakit Anemia Untuk Ibu Hamil Di Rskd Ibu Dan Anak Siti Fatimah Makassar (Doctoral dissertation, FMIPA).
+
+Subandriyo, B., ST, S., & Stat, M. (2020). Analisis kolerasi dan regresi. Badan Pusat Statistik.
+
+Khotimah, K., & Nasrulloh, M. F. (2021). Statistik Deskriptif. LPPM Universitas KH. A. Wahab Hasbullah.
+
+Arisena, Gede Mekse Korri. Buku Ajar Pengantar Statistika. 
+
+Nugraha, J. (2014). Pengantar analisis data kategorik: Metode dan aplikasi menggunakan program R. Deepublish.
+
+Hasibuan, N. K., Dur, S., & Husein, I. (2022). Faktor Penyebab Penyakit Diabetes Melitus dengan Metode Regresi Logistik. G-Tech: Jurnal Teknologi Terapan, 6(2), 257-264.
+
